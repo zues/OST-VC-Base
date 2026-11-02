@@ -1,0 +1,95 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "<komponenten-id, z. B. item-card>",
+  "status": "draft",
+  "kind": "composition",
+  "scannedAt": "YYYY-MM-DD",
+  "code": {
+    "file": "src/components/<komponenten-id>.tsx"
+  },
+  "figma": {
+    "fileKey": "<FIGMA_FILE_KEY>",
+    "page": "<Figma-Page>"
+  },
+  "uses": [
+    "card",
+    "aspect-ratio",
+    "badge"
+  ],
+  "parts": [
+    {
+      "figma": {
+        "name": "<Name der Figma-Komponente>",
+        "type": "COMPONENT_SET",
+        "id": "<node-id>",
+        "key": "<component key>"
+      },
+      "code": {
+        "export": "<ExportName>"
+      },
+      "note": "Eigene Komponente = Komposition aus shadcn-Teilen. Responsive als Variante Breakpoint=Desktop/Mobile, Zustände als Varianten.",
+      "props": [
+        {
+          "figma": "Breakpoint",
+          "type": "VARIANT",
+          "code": null,
+          "values": {
+            "Desktop": null,
+            "Mobile": null
+          },
+          "note": "Im Code keine Prop, sondern Tailwind-Breakpoints (sm:, md:, lg:)."
+        },
+        {
+          "figma": "State",
+          "type": "VARIANT",
+          "code": {
+            "state": true
+          },
+          "values": {
+            "Default": null,
+            "Hover": ":hover"
+          }
+        }
+      ]
+    }
+  ],
+  "layers": [
+    {
+      "figma": "Card",
+      "code": {
+        "part": "Card"
+      },
+      "figmaId": "<node-id der Ebene>",
+      "note": "Ein Eintrag pro sichtbarer Ebene: welches shadcn-Teil steht im Code an dieser Stelle?"
+    },
+    {
+      "figma": "Card › Aspect Ratio",
+      "code": {
+        "part": "AspectRatio",
+        "props": {
+          "ratio": "16 / 9"
+        }
+      },
+      "data": "item.imageUrl (next/image)"
+    },
+    {
+      "figma": "Card › Card Title",
+      "code": {
+        "part": "CardTitle"
+      },
+      "data": "item.title"
+    },
+    {
+      "figma": "Card › Badge",
+      "code": {
+        "part": "Badge",
+        "props": {
+          "variant": "secondary"
+        }
+      },
+      "data": "item.price",
+      "when": "item.price !== null"
+    }
+  ],
+  "issues": []
+}

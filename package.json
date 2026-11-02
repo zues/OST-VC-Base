@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:contracts": "node contracts/scripts/check-code.mjs",
+    "check:tokens": "node contracts/scripts/tokens.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

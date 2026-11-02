@@ -1,0 +1,119 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "button",
+  "status": "draft",
+  "scannedAt": "YYYY-MM-DD",
+  "code": {
+    "file": "src/components/ui/button.tsx",
+    "registry": "@shadcn/button",
+    "style": "base-nova"
+  },
+  "figma": {
+    "fileKey": "<FIGMA_FILE_KEY>",
+    "page": "<Figma-Page der Komponente, z. B. Button>"
+  },
+  "parts": [
+    {
+      "figma": {
+        "name": "Button",
+        "type": "COMPONENT_SET",
+        "id": "<node-id, z. B. 12:345>",
+        "key": "<component key>"
+      },
+      "code": {
+        "export": "Button"
+      },
+      "props": [
+        {
+          "figma": "Button Text",
+          "type": "TEXT",
+          "figmaKey": "Button Text#<id>",
+          "code": {
+            "children": true
+          }
+        },
+        {
+          "figma": "Show Left Icon",
+          "type": "BOOLEAN",
+          "figmaKey": "Show Left Icon#<id>",
+          "code": {
+            "child": "<Icon data-icon=\"inline-start\" />"
+          }
+        },
+        {
+          "figma": "Show Right Icon",
+          "type": "BOOLEAN",
+          "figmaKey": "Show Right Icon#<id>",
+          "code": {
+            "child": "<Icon data-icon=\"inline-end\" />"
+          }
+        },
+        {
+          "figma": "Show KbdGroup",
+          "type": "BOOLEAN",
+          "figmaKey": "Show KbdGroup#<id>",
+          "code": null,
+          "note": "Beispiel für eine Property, die es nur in Figma gibt (code: null)."
+        },
+        {
+          "figma": "Variant",
+          "type": "VARIANT",
+          "code": {
+            "prop": "variant"
+          },
+          "values": {
+            "Default": "default",
+            "Secondary": "secondary",
+            "Destructive": "destructive",
+            "Outline": "outline",
+            "Ghost": "ghost",
+            "Link": "link"
+          }
+        },
+        {
+          "figma": "Size",
+          "type": "VARIANT",
+          "code": {
+            "prop": "size"
+          },
+          "values": {
+            "default": "default",
+            "xs": "xs",
+            "sm": "sm",
+            "lg": "lg",
+            "icon": "icon",
+            "icon-xs": "icon-xs",
+            "icon-sm": "icon-sm",
+            "icon-lg": "icon-lg"
+          }
+        },
+        {
+          "figma": "State",
+          "type": "VARIANT",
+          "code": {
+            "state": true
+          },
+          "values": {
+            "Default": null,
+            "Hover": ":hover",
+            "Focus": ":focus-visible",
+            "Pressed": ":active",
+            "Disabled": "disabled",
+            "Loading": null
+          }
+        }
+      ],
+      "note": "Beispiel: Property-Namen und #id-Suffixe hängen vom verwendeten Figma-Kit ab. Mit figma-console auslesen (componentPropertyDefinitions) und hier eintragen."
+    }
+  ],
+  "codeOnly": [
+    "buttonVariants"
+  ],
+  "issues": [
+    {
+      "severity": "info",
+      "message": "Beispiel: State 'Loading' hat keine Entsprechung im Code. Jede Abweichung als Zeile in DRIFT.md eintragen und hier per drift-ID verweisen.",
+      "drift": "D-001"
+    }
+  ]
+}

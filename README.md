@@ -12,6 +12,22 @@ liegt in [OST-VCW-Demo](https://github.com/zues/OST-VCW-Demo).
 - `public/images/meetcat/` – ein Bild pro Gruppe; Meetups verwenden das Bild ihrer Gruppe
   (`image.src` ist schon der Pfad für `<Image src=… />`).
 
+## Arbeitsweise
+
+Figma und Code werden über Contracts verbunden. Das Grundgerüst dafür ist schon da, aber leer:
+
+- **[CLAUDE.md](CLAUDE.md):** Projekt-Steckbrief (bitte ausfüllen), Regeln und der Ablauf für eine
+  neue Seite. Claude Code liest die Datei bei jeder Session.
+- **[docs/pages/](docs/pages/):** ein MD-File pro Seitentyp, Vorlage in `_TEMPLATE.md`.
+- **[contracts/](contracts/README.md):** Contracts pro Komponente (Vorlagen in `contracts/templates/`),
+  Drift-Liste, Design-Tokens, Prüfscripts und die
+  [Figma-Arbeitsweise](contracts/FIGMA-ARBEITSWEISE.md).
+
+```bash
+npm run check:contracts   # Contracts prüfen
+npm run check:tokens      # Tokens prüfen
+```
+
 ## Starten
 
 ```bash
