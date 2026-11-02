@@ -6,13 +6,8 @@ tragt ihr in [CLAUDE.md](../CLAUDE.md#projekt-steckbrief) ein.
 
 ## Aufbau des Figma-Files
 
-Tragt hier ein, wo was liegt. Claude liest diesen Abschnitt, bevor es in Figma arbeitet.
-
-- **Page mit den Screens:** `<Page-Name>` (`<node-id>`)
-- **Screens:** pro Seitentyp ein Frame Desktop (1440 px) und einer Mobile (390 px), z. B.
-  „Übersicht / Desktop“ und „Übersicht / Mobile“. Desktop oben, Mobile darunter.
-- **Section für eigene Komponenten:** `<Name>` (`<node-id>`)
-- **Section für Overlays** (Dialoge, Menüs, Zustände): `<Name>` (`<node-id>`)
+Wo was liegt (Pages, Screens, Komponenten, Variablen mit IDs), steht in
+[DESIGN-SYSTEM.md](../DESIGN-SYSTEM.md). Neue Screens und Komponenten dort nachtragen.
 
 Grundsätze:
 - **Responsive** ist immer eine Variante `Breakpoint=Desktop/Mobile` im selben Component Set.

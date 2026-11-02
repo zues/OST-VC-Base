@@ -27,18 +27,22 @@ im Projekt enthalten. Die Schritte stehen in
 
 ## Arbeitsweise
 
-Figma und Code werden über Contracts verbunden. Das Grundgerüst dafür ist schon da, aber leer:
+Figma und Code werden über Contracts verbunden. Das Grundgerüst dafür ist schon da:
 
 - **[CLAUDE.md](CLAUDE.md):** Projekt-Steckbrief (bitte ausfüllen), Regeln und der Ablauf für eine
   neue Seite. Claude Code liest die Datei bei jeder Session.
+- **[DESIGN-SYSTEM.md](DESIGN-SYSTEM.md):** Aufbau des Seminar-Figma-Files mit Node-IDs, die
+  Kit-Komponenten mit Contract, Eigenheiten des Kits und die Variablen.
 - **[docs/pages/](docs/pages/):** ein MD-File pro Seitentyp, Vorlage in `_TEMPLATE.md`.
-- **[contracts/](contracts/README.md):** Contracts pro Komponente (Vorlagen in `contracts/templates/`),
+- **[contracts/](contracts/README.md):** Contracts pro Komponente (19 Kit-Komponenten schon angelegt,
+  Vorlagen in `contracts/templates/`),
   Drift-Liste, Design-Tokens, Prüfscripts und die
   [Figma-Arbeitsweise](contracts/FIGMA-ARBEITSWEISE.md).
 
 ```bash
 npm run check:contracts   # Contracts prüfen
 npm run check:tokens      # Tokens prüfen
+npm run figma:key -- <Figma-Link>   # File-Key eurer Figma-Kopie eintragen (macht /setup)
 ```
 
 ## Starten

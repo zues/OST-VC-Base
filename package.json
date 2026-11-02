@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "check:contracts": "node contracts/scripts/check-code.mjs",
-    "check:tokens": "node contracts/scripts/tokens.mjs"
+    "check:tokens": "node contracts/scripts/tokens.mjs",
+    "figma:key": "node contracts/scripts/figma-key.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

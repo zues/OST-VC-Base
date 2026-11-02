@@ -1,0 +1,45 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "separator",
+  "status": "draft",
+  "scannedAt": "2026-10-30",
+  "code": {
+    "file": "src/components/ui/separator.tsx",
+    "registry": "@shadcn/separator",
+    "style": "base-nova"
+  },
+  "figma": {
+    "fileKey": "<FIGMA_FILE_KEY>",
+    "page": "Separator"
+  },
+  "parts": [
+    {
+      "figma": {
+        "name": "Separator",
+        "type": "COMPONENT_SET",
+        "id": "118:2690"
+      },
+      "code": {
+        "export": "Separator"
+      },
+      "props": [
+        {
+          "figma": "Orientation",
+          "type": "VARIANT",
+          "code": {
+            "prop": "orientation",
+            "valuesFrom": {
+              "package": "@base-ui/react"
+            }
+          },
+          "values": {
+            "Horizontal": "horizontal",
+            "Vertical": "vertical"
+          }
+        }
+      ]
+    }
+  ],
+  "codeOnly": [],
+  "issues": []
+}

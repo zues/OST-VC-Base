@@ -103,13 +103,15 @@ Nichts installieren.
 1. Prüfen: `.claude/skills/shadcn/SKILL.md` existiert. Er wirkt, weil `components.json` existiert.
 2. Fehlt er: `npx -y skills add shadcn/ui -a claude-code -s shadcn -y --copy`.
 
-## 7. Projekt-Steckbrief
+## 7. Figma-File und Projekt-Steckbrief
 
-1. In [CLAUDE.md](../../../CLAUDE.md) den Abschnitt „Projekt-Steckbrief“ mit den Studierenden
+1. Mit dem Figma-Link der Studierenden `npm run figma:key -- <Figma-Link>` ausführen. Das setzt den
+   File-Key in allen Contracts, in `contracts/tokens.json` und in `DESIGN-SYSTEM.md`.
+2. Stichprobe: Mit figma-console prüfen, ob die Screens aus [DESIGN-SYSTEM.md](../../../DESIGN-SYSTEM.md)
+   unter ihren Node-IDs im File liegen (z. B. „Übersicht / Desktop“). Fehlen sie, ist es nicht die
+   Seminar-Datei: melden und nichts weiter eintragen.
+3. In [CLAUDE.md](../../../CLAUDE.md) den Abschnitt „Projekt-Steckbrief“ mit den Studierenden
    ausfüllen: Name der App, Kurzbeschreibung, Figma-Link und Key, Kit, Page, Team.
-2. Den Figma-Key aus dem Link nehmen: `figma.com/design/<KEY>/…`.
-3. In [contracts/FIGMA-ARBEITSWEISE.md](../../../contracts/FIGMA-ARBEITSWEISE.md) den Abschnitt
-   „Aufbau des Figma-Files“ ausfüllen, soweit bekannt.
 
 ## Checkliste am Schluss
 
@@ -120,6 +122,7 @@ Setup
 ✅/❌ figma-console MCP eingerichtet
 ✅/❌ Desktop Bridge verbunden, richtiges File aktiv
 ✅/❌ shadcn-Skill vorhanden
+✅/❌ File-Key gesetzt, Screens aus DESIGN-SYSTEM.md gefunden
 ✅/❌ Projekt-Steckbrief ausgefüllt
 ```
 

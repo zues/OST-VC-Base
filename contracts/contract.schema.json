@@ -93,8 +93,7 @@
             "required": [
               "name",
               "type",
-              "id",
-              "key"
+              "id"
             ],
             "properties": {
               "name": {

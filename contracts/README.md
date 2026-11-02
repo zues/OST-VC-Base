@@ -9,7 +9,7 @@ Keys tragt ihr aus eurem eigenen File ein.
 ```
 contracts/
 ├── contract.schema.json        ← JSON-Schema (geschlossen: unbekannte Felder sind Fehler)
-├── components/*.contract.json  ← eure Contracts (anfangs leer)
+├── components/*.contract.json  ← Contracts: Kit-Komponenten schon da, eigene kommen dazu
 ├── templates/                  ← Vorlagen zum Kopieren
 │   ├── shadcn-component.contract.json   (Beispiel: Button)
 │   └── composition.contract.json        (eigene Komponente aus shadcn-Teilen)
@@ -20,6 +20,7 @@ contracts/
 └── scripts/
     ├── check-code.mjs          ← prüft die Contracts gegen Schema, DRIFT.md und Code
     ├── figma-check.mjs         ← erzeugt ein Prüfscript für die Figma-Seite (figma-console MCP)
+    ├── figma-key.mjs           ← setzt den File-Key eurer Figma-Kopie (npm run figma:key)
     └── tokens.mjs              ← vergleicht tokens.json mit globals.css
 ```
 

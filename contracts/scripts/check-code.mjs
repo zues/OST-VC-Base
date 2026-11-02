@@ -139,18 +139,14 @@ for (const file of files) {
     if (issue.drift && !driftIds.has(issue.drift)) problems.push(`${issue.drift} gibt es nicht in DRIFT.md`)
   }
 
-  // Eigene Komposition ohne Code-Datei → noch nicht umgesetzt (offen statt Fehler)
-  if (!existsSync(codePath) && contract.kind === "composition") {
-    console.log(`○ ${contract.id}: ${contract.code.file} noch nicht umgesetzt`)
+  // Ohne Code-Datei → offen statt Fehler: eigene Komposition noch nicht umgesetzt bzw.
+  // shadcn-Komponente noch nicht installiert (die Kit-Contracts liegen schon bereit)
+  if (!existsSync(codePath)) {
+    const what = contract.kind === "composition" ? "noch nicht umgesetzt" : "noch nicht installiert"
+    console.log(`○ ${contract.id}: ${contract.code.file} ${what}`)
     problems.forEach((p) => console.log(`    ✖ ${p}`))
     errors += problems.length
     open++
-    continue
-  }
-  if (!existsSync(codePath)) {
-    console.log(`✖ ${contract.id}: ${contract.code.file} fehlt`)
-    problems.forEach((p) => console.log(`    ✖ ${p}`))
-    errors += 1 + problems.length
     continue
   }
   const src = readFileSync(codePath, "utf8")
@@ -249,5 +245,5 @@ for (const file of files) {
   openIssues.forEach((i) => console.log(`    △ ${i.message}`))
 }
 
-console.log(`\n${errors} Fehler, ${warnings} offene Warnungen${open ? `, ${open} Komposition(en) noch nicht umgesetzt` : ""}`)
+console.log(`\n${errors} Fehler, ${warnings} offene Warnungen${open ? `, ${open} Contract(s) ohne Code (noch nicht installiert bzw. umgesetzt)` : ""}`)
 process.exit(errors ? 1 : 0)

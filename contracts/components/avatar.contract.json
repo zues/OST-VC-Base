@@ -1,0 +1,181 @@
+{
+  "$schema": "../contract.schema.json",
+  "id": "avatar",
+  "status": "draft",
+  "scannedAt": "2026-10-30",
+  "code": {
+    "file": "src/components/ui/avatar.tsx",
+    "registry": "@shadcn/avatar",
+    "style": "base-nova"
+  },
+  "figma": {
+    "fileKey": "<FIGMA_FILE_KEY>",
+    "page": "Avatar"
+  },
+  "parts": [
+    {
+      "figma": {
+        "name": "Avatar",
+        "type": "COMPONENT_SET",
+        "id": "17100:29935"
+      },
+      "code": {
+        "export": "Avatar"
+      },
+      "props": [
+        {
+          "figma": "Fallback Text",
+          "type": "TEXT",
+          "figmaKey": "Fallback Text#17100:44",
+          "code": {
+            "part": "AvatarFallback",
+            "children": true
+          }
+        },
+        {
+          "figma": "Show Badge",
+          "type": "BOOLEAN",
+          "figmaKey": "Show Badge#21123:0",
+          "code": {
+            "part": "AvatarBadge"
+          }
+        },
+        {
+          "figma": "Type",
+          "type": "VARIANT",
+          "code": {
+            "composition": true
+          },
+          "values": {
+            "Image": "<AvatarImage />",
+            "Fallback": "<AvatarFallback>Text</AvatarFallback>",
+            "Icon": "<AvatarFallback><Icon /></AvatarFallback>"
+          }
+        },
+        {
+          "figma": "Size",
+          "type": "VARIANT",
+          "code": {
+            "prop": "size"
+          },
+          "values": {
+            "xl": null,
+            "lg": "lg",
+            "default": "default",
+            "sm": "sm",
+            "xs": null
+          }
+        }
+      ]
+    },
+    {
+      "figma": {
+        "name": "Avatar Group",
+        "type": "COMPONENT",
+        "id": "17100:83077"
+      },
+      "code": {
+        "export": "AvatarGroup"
+      },
+      "props": [
+        {
+          "figma": "Items",
+          "type": "SLOT",
+          "figmaKey": "Items#21352:11",
+          "code": {
+            "children": true
+          }
+        }
+      ]
+    },
+    {
+      "figma": {
+        "name": "Avatar / Group Count",
+        "type": "COMPONENT_SET",
+        "id": "27477:604100"
+      },
+      "code": {
+        "export": "AvatarGroupCount"
+      },
+      "props": [
+        {
+          "figma": "Count Text",
+          "type": "TEXT",
+          "figmaKey": "Count Text#27477:0",
+          "code": {
+            "children": true
+          }
+        },
+        {
+          "figma": "Size",
+          "type": "VARIANT",
+          "code": {
+            "inherited": "Avatar.size"
+          },
+          "values": {
+            "lg": "lg",
+            "default": "default",
+            "sm": "sm"
+          },
+          "note": "Im Code keine eigene Prop – ergibt sich aus der Grösse der Avatare in der AvatarGroup."
+        }
+      ],
+      "note": "Am 01.11.2026 per Claude Code ergänzt, nicht Teil des originalen Kits."
+    },
+    {
+      "figma": {
+        "name": "Avatar / Avatar Badge",
+        "type": "COMPONENT_SET",
+        "id": "21122:16180"
+      },
+      "code": {
+        "export": "AvatarBadge"
+      },
+      "props": [
+        {
+          "figma": "Type",
+          "type": "VARIANT",
+          "code": {
+            "composition": true
+          },
+          "values": {
+            "Default": "<AvatarBadge />",
+            "Icon": "<AvatarBadge><Icon /></AvatarBadge>"
+          }
+        },
+        {
+          "figma": "Size",
+          "type": "VARIANT",
+          "code": {
+            "inherited": "Avatar.size"
+          },
+          "values": {
+            "2": "sm",
+            "3": "lg",
+            "2.5": "default"
+          },
+          "note": "Im Code keine eigene Prop – ergibt sich aus der Grösse des Avatars."
+        }
+      ]
+    },
+    {
+      "figma": {
+        "name": "Avatar / Form Field",
+        "type": "COMPONENT",
+        "id": "18692:42355"
+      },
+      "code": null,
+      "props": [],
+      "note": "Beispiel-Komposition für Formulare, keine eigene Code-Komponente."
+    }
+  ],
+  "codeOnly": [
+    "AvatarImage"
+  ],
+  "issues": [
+    {
+      "severity": "info",
+      "message": "Figma-Grössen 'xl' (48px) und 'xs' (20px) gibt es im Code nicht (nur sm, default, lg) – akzeptiert als Kit-Erweiterung, nicht verwenden."
+    }
+  ]
+}

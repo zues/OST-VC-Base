@@ -47,6 +47,10 @@ Bitte ausfüllen. Claude liest diese Angaben bei jeder Session.
    - Nicht eigenmächtig eine Seite angleichen. Erst fragen.
 5. **Figma-Zugriff** über die figma-console MCP (Desktop Bridge). Vor jedem Aufruf prüfen, dass
    das richtige File verbunden ist (`figma_list_open_files`).
+6. **Design-System zuerst lesen.** [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md) sagt, wo im Figma-File was
+   liegt (Node-IDs) und welche Kit-Komponenten schon einen Contract haben. Nicht das ganze File
+   absuchen, sondern dort nachschlagen. Ist der File-Key dort noch `<FIGMA_FILE_KEY>`, zuerst
+   `npm run figma:key -- <Figma-Link>` ausführen.
 
 ## Ablauf für eine neue Seite
 
@@ -57,6 +61,7 @@ Bitte ausfüllen. Claude liest diese Angaben bei jeder Session.
 2. **Bauen:**
    - shadcn-Komponenten installieren, Kompositionen bauen, Seite zusammensetzen.
    - Desktop und Mobile in derselben Seite über Tailwind-Breakpoints.
+   - Kit-Komponenten nach ihrem Contract in `contracts/components/` verwenden (Mapping Figma ↔ Props).
    - Für jede eigene Komponente einen Contract aus [contracts/templates/](contracts/templates/)
      anlegen (Anleitung: [contracts/README.md](contracts/README.md)).
    - Am Schluss selbst Screenshots bei 390 und 1440 px mit Figma vergleichen.
@@ -85,6 +90,7 @@ testen, dann nach Figma übertragen, siehe
 npm run lint
 npm run check:contracts   # Contracts gegen Schema, DRIFT.md und Code
 npm run check:tokens      # Design-Tokens (contracts/tokens.json) gegen src/app/globals.css
+npm run figma:key -- <Figma-Link>   # File-Key in Contracts, tokens.json und DESIGN-SYSTEM.md setzen
 npm run build
 ```
 
@@ -92,8 +98,9 @@ npm run build
 
 | Datei / Ordner | Inhalt |
 |---|---|
+| `DESIGN-SYSTEM.md` | Aufbau des Figma-Files mit Node-IDs, Kit-Komponenten, Eigenheiten, Variablen |
 | `docs/pages/` | ein MD-File pro Seitentyp |
-| `contracts/components/` | ein Contract pro Komponente |
+| `contracts/components/` | ein Contract pro Komponente (Kit-Komponenten schon angelegt) |
 | `contracts/DRIFT.md`, `DRIFT-LOG.md` | Abweichungen und Entscheidungen |
 | `contracts/tokens.json` | Design-Tokens aus Figma |
 | `contracts/FIGMA-ARBEITSWEISE.md` | Aufbau des Figma-Files, Regeln, Stolpersteine mit figma-console |
