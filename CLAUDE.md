@@ -28,6 +28,8 @@ Bitte ausfüllen. Claude liest diese Angaben bei jeder Session.
   deshalb heisst es z. B. `render` statt `asChild`.
 - Icons: **Lucide**.
 - Komponenten hinzufügen: `npx shadcn@latest add <name>`.
+- Der offizielle **shadcn-Skill** liegt in `.claude/skills/shadcn/` und gilt für allen UI-Code
+  (Komposition, Formulare, Icons, Styling). Aktualisieren mit `npx skills update`.
 
 ## Regeln
 

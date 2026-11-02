@@ -4,6 +4,19 @@ Leeres Grundgerüst für eigene Projekte im Seminar: Next.js 16, Tailwind CSS 4 
 (`base-nova`). Es enthält nur das technische Setup, keine Inhalte. Das fertige Beispielprojekt
 liegt in [OST-VCW-Demo](https://github.com/zues/OST-VCW-Demo).
 
+## Setup
+
+Am einfachsten über die **Claude Code Desktop App**: Projekt klonen, dann im Chat
+
+```
+/setup
+```
+
+eingeben. Claude führt dich durch alles Weitere: Pakete, Dev-Server, figma-console MCP mit
+Desktop Bridge und Projekt-Steckbrief. Der [shadcn-Skill](.claude/skills/shadcn/) ist schon
+im Projekt enthalten. Die Schritte stehen in
+[.claude/skills/setup/SKILL.md](.claude/skills/setup/SKILL.md).
+
 ## Inhalte für MeetCat
 
 - `src/data/meetcat.json` – 20 Gruppen, 30 Meetups und 10 Mitglieder (Texte, Daten, Orte, Preise).
