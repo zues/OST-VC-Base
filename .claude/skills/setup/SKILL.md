@@ -1,6 +1,6 @@
 ---
 name: setup
-description: Richtet das Projekt auf einem neuen Rechner ein, Schritt für Schritt mit Prüfung. Node und Pakete, Dev-Server, figma-console MCP mit Desktop Bridge, Projekt-Steckbrief. Verwenden, wenn jemand „Richte das Projekt ein“, „Setup“ oder /setup sagt, oder wenn etwas aus dem Setup fehlt.
+description: Richtet das Projekt auf einem neuen Rechner ein (Mac oder Windows), Schritt für Schritt mit Prüfung. Git, Node und Pakete, Dev-Server, figma-console MCP mit Desktop Bridge, Projekt-Steckbrief. Verwenden, wenn jemand „Richte das Projekt ein“, „Setup“ oder /setup sagt, oder wenn etwas aus dem Setup fehlt.
 ---
 
 # Projekt-Setup
@@ -20,11 +20,14 @@ das Terminal kaum.
 - Keine Tokens oder Passwörter ins Repo schreiben. Nichts committen, ausser die Studierenden
   fragen danach.
 
-## 1. Node.js und Pakete
+## 1. Git, Node.js und Pakete
 
-1. `node -v` prüfen. Nötig ist Version 20 oder neuer.
-   - Fehlt Node: ist `brew` vorhanden, mit `brew install node` installieren.
-   - Sonst: Download von https://nodejs.org (LTS) verlinken, warten, erneut prüfen.
+1. `git --version` und `node -v` prüfen. Nötig ist Node 20 oder neuer.
+   - Fehlt etwas, selbst installieren, wenn das geht: auf dem Mac mit `brew`, falls vorhanden,
+     auf Windows mit `winget` (`Git.Git`, `OpenJS.NodeJS.LTS`).
+   - Sonst: Download von https://git-scm.com bzw. https://nodejs.org (LTS) verlinken, Schritt für
+     Schritt durchführen, warten, erneut prüfen.
+   - Wurde etwas neu installiert: Die Studierenden müssen die App danach ganz beenden und neu öffnen.
 2. `npm install` im Projektordner ausführen.
 3. Prüfen: `npm run check:contracts` und `npm run lint` laufen ohne Fehler.
 
@@ -39,47 +42,58 @@ das Terminal kaum.
 
 Für die figma-console MCP braucht es ein persönliches Figma-Token. Anleitung für die Studierenden:
 
-1. Figma öffnen → Menü oben links → **Settings** → **Security** → **Personal access tokens** →
-   **Generate new token**.
-2. Name: `Figma Console MCP`. Ablaufdatum: Ende des Semesters.
-3. Scopes auf **Read** setzen: File content, File versions, Library content, Library assets,
-   Current user. **Comments** auf Read und Write. Alles andere bleibt „No access“.
-4. Token kopieren (wird nur einmal angezeigt) und hier in den Chat einfügen.
+1. In Figma auf die Startseite wechseln (weg aus der Datei) → oben links auf den Account →
+   **Settings** → Tab **Security** → **Personal access tokens** → **Generate new token**.
+2. Name: `Figma Console MCP`. Ablauf: die längste Dauer wählen.
+3. Diese Rechte anhaken, alles andere bleibt leer:
+   - Users: `current_user:read`
+   - Files: `file_comments:read`, `file_comments:write`, `file_content:read`, `file_versions:read`
+   - Design systems: `library_assets:read`, `library_content:read`
+   - Nur falls angeboten (Enterprise): `file_variables:read`
+4. **Generate token**, Token sofort kopieren (wird nur einmal angezeigt) und hier in den Chat einfügen.
 
-Das Token beginnt mit `figd_`. Andernfalls nachfragen.
+Das Token beginnt mit `figd_`. Andernfalls nachfragen. Fehler 403 heisst: Ein Recht fehlt, neues
+Token erstellen.
 
 ## 4. figma-console MCP einrichten
 
 1. Prüfen, ob `figma-console` schon eingerichtet ist (`claude mcp list` bzw. `~/.claude.json`,
-   Abschnitt `mcpServers`).
+   Abschnitt `mcpServers` auf oberster Ebene).
 2. Wenn nicht, für den Benutzer (nicht nur dieses Projekt) einrichten:
-   ```bash
-   claude mcp add figma-console -s user -e FIGMA_ACCESS_TOKEN=<token> -e ENABLE_MCP_APPS=true -- npx -y figma-console-mcp@latest
-   ```
-   - Ist der Befehl `claude` nicht vorhanden: den gleichen Eintrag per Node-Skript in
-     `~/.claude.json` unter `mcpServers` ergänzen (bestehende Einträge behalten):
+   - **Mac:**
+     ```bash
+     claude mcp add figma-console -s user -e FIGMA_ACCESS_TOKEN=<token> -e ENABLE_MCP_APPS=true -- npx -y figma-console-mcp@latest
+     ```
+     Ist der Befehl `claude` nicht vorhanden: denselben Eintrag per Node-Skript in `~/.claude.json`
+     unter `mcpServers` ergänzen (bestehende Einträge behalten):
      `{"command":"npx","args":["-y","figma-console-mcp@latest"],"env":{"FIGMA_ACCESS_TOKEN":"<token>","ENABLE_MCP_APPS":"true"}}`
-3. Das Token **nie** in `.mcp.json` oder eine andere Datei im Projekt schreiben.
-4. Den Studierenden sagen: **Jetzt eine neue Session starten** (neuer Chat im selben Ordner)
-   und dort `/setup` erneut aufrufen. Erst dann sind die Figma-Werkzeuge verfügbar.
+   - **Windows:** per Node-Skript in `%USERPROFILE%\.claude.json` unter `mcpServers` ergänzen,
+     mit `cmd /c`, weil `npx` dort ein Skript ist:
+     `{"command":"cmd","args":["/c","npx","-y","figma-console-mcp@latest"],"env":{"FIGMA_ACCESS_TOKEN":"<token>","ENABLE_MCP_APPS":"true"}}`
+3. Das Token **nie** in `.mcp.json` oder eine andere Datei im Projekt schreiben und nicht noch
+   einmal anzeigen.
+4. Den Studierenden sagen: **Claude ganz beenden und neu öffnen** (Mac: ⌘ Q; Windows: Fenster
+   schliessen, dann Claude-Symbol bei der Uhr → Rechtsklick → Beenden). Danach im Projektordner
+   `/setup` erneut aufrufen. Die MCP wird nur beim Start geladen.
 
 ## 5. Desktop Bridge Plugin in Figma
 
-Voraussetzung: Schritt 4 ist erledigt und die neue Session läuft. Die MCP kopiert das Plugin beim
-Start nach `~/.figma-console-mcp/plugin/`.
+Voraussetzung: Schritt 4 ist erledigt und Claude wurde neu gestartet.
 
-1. Prüfen, dass `~/.figma-console-mcp/plugin/manifest.json` existiert.
-   Sonst: `npx figma-console-mcp@latest --print-path`.
-2. Anleitung für die Studierenden:
-   1. **Figma Desktop** öffnen (nicht im Browser).
-   2. Das Projekt-File öffnen.
-   3. Menü **Plugins → Development → Import plugin from manifest…**
-   4. Die Datei `manifest.json` wählen. Der Ordner ist versteckt: im Dialog `⌘ ⇧ G` drücken
-      und `~/.figma-console-mcp/plugin/` eingeben.
-   5. **Plugins → Development → Figma Desktop Bridge** starten. Das Fenster offen lassen.
-3. Prüfen mit `figma_get_status` und `figma_list_open_files`: verbunden, und das richtige File ist aktiv.
-4. Bei Problemen `figma_diagnose` aufrufen. Häufig: Plugin läuft nicht im File, Figma im Browser
-   statt Desktop, oder alte Session ohne MCP.
+1. Anleitung für die Studierenden:
+   1. **Figma Desktop** öffnen (nicht im Browser) und das Projekt-File öffnen.
+   2. Das Plugin aus der Lektion herunterladen (`figma-desktop-bridge.zip`), entpacken und den
+      Ordner `figma-desktop-bridge` nach `Dokumente/OST` verschieben. **Nicht** in den Projektordner,
+      sonst landet er in Git.
+   3. Rechtsklick auf die Arbeitsfläche → **Plugins → Development → Import plugin from manifest…**
+      → `manifest.json` im Ordner `figma-desktop-bridge` wählen.
+   4. **Plugins → Development → Figma Desktop Bridge** starten. Das Fenster offen lassen.
+   - Ohne ZIP: Die MCP legt das Plugin beim Start auch unter `~/.figma-console-mcp/plugin/` ab
+     (Pfad sonst mit `npx figma-console-mcp@latest --print-path`). Der Ordner ist versteckt, im
+     Dateidialog auf dem Mac mit `⌘ ⇧ G` öffnen.
+2. Prüfen mit `figma_get_status` und `figma_list_open_files`: verbunden, und das richtige File ist aktiv.
+3. Bei Problemen `figma_diagnose` aufrufen. Häufig: Plugin läuft nicht im File, Figma im Browser
+   statt Desktop, oder Claude seit dem MCP-Eintrag nicht neu gestartet.
 
 ## 6. shadcn-Skill
 
@@ -110,4 +124,4 @@ Setup
 ```
 
 Danach den nächsten Schritt vorschlagen: erste Seite nach dem Ablauf in CLAUDE.md
-(Seiten-Doku → Figma → Contracts → Code → Prüfen).
+(grob erfassen → bauen → testen → nachjustieren → dokumentieren → committen).

@@ -33,6 +33,37 @@ Grundsätze:
 - **Vor einer Drift-Entscheidung** gegen das offizielle shadcn-Registry und das Live-Figma gegenprüfen.
 - **Lizenz:** Kits mit eingeschränkter Lizenz nicht weitergeben und nicht öffentlich teilen.
 
+## Theme nach Figma
+
+Das Theme ändert sich im Code nur über die Variablen in `src/app/globals.css`, siehe
+[CLAUDE.md](../CLAUDE.md#theme). So überträgt Claude es nach Figma:
+
+1. Die Variablen in `globals.css` (`:root` = Light, `.dark` = Dark) mit den Figma-Variablen
+   vergleichen. Im shadcn-Kit liegen sie in einer Collection mit den Modes Light und Dark,
+   dazu Radius und Schrift in eigenen Collections. Mit `figma_get_variables` auslesen.
+2. **Nur die geänderten Variablen** anpassen, mit `figma_batch_update_variables` in einem Aufruf.
+   - Verweist die Figma-Variable auf eine Palette-Farbe (z. B. `neutral-900`) und der neue Wert
+     liegt in der Palette, den Verweis umhängen. Sonst den Rohwert setzen.
+   - `oklch` aus dem Code vorher in Hex umrechnen, Figma kennt kein `oklch`.
+3. Die neuen Werte in [tokens.json](tokens.json) eintragen und mit `npm run check:tokens` prüfen.
+4. Screenshots von einem Desktop- und einem Mobile-Screen machen. Die Screens übernehmen das Theme
+   automatisch, wenn die Kit-Komponenten an den Variablen hängen.
+5. Was sich nicht übertragen lässt (z. B. fest eingestellte Farben im Kit), kommt nach DRIFT.md.
+
+## Code → Figma
+
+Für eine Seite, die es nur im Code gibt:
+
+1. Neue Frames `<Seite> / Desktop` (1440 px) und `<Seite> / Mobile` (390 px) auf der Page mit den
+   Screens anlegen, mit Abstand neben den bestehenden.
+2. **Nur Instanzen** aus dem Kit und aus der Section mit den eigenen Komponenten verwenden.
+   Nichts von Hand nachzeichnen.
+3. Abschnitt für Abschnitt arbeiten, nach jedem Abschnitt ein Screenshot. Kleine Skripte statt
+   eines grossen.
+4. Fehlt etwas im Kit, nicht nachbauen, sondern nach DRIFT.md eintragen.
+5. Die Node-IDs der Frames in die Seiten-Doku eintragen.
+6. Hängt oder stürzt das Plugin ab: aufhören und den Stand melden.
+
 ## figma-console MCP (Desktop Bridge)
 
 Voraussetzung: Figma Desktop ist offen, und im richtigen File läuft das Plugin „Desktop Bridge“.

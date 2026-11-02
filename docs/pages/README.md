@@ -7,13 +7,14 @@ oder im Code gebaut wird.
 
 ## Neue Seite anlegen
 
-1. `_TEMPLATE.md` kopieren und nach dem Seitentyp benennen, z. B. `overview.md` oder `detail.md`.
-2. Zweck, Route und Aufbau ausfüllen. Die Komponenten zuerst grob, die Contracts kommen später.
-3. In Figma die Frames Desktop und Mobile bauen und ihre Node-IDs eintragen.
-4. Für jede verwendete Komponente einen Contract anlegen
-   (siehe [contracts/README.md](../../contracts/README.md)).
-5. Code umsetzen, Abweichungen in [DRIFT.md](../../contracts/DRIFT.md) eintragen.
-6. Akzeptanzkriterien abhaken und den Status in der Tabelle oben auf „Abgeglichen“ setzen.
+Der ganze Ablauf steht in [CLAUDE.md](../../CLAUDE.md#ablauf-für-eine-neue-seite). Für die Doku heisst das:
+
+1. **Vor dem Bauen grob:** `_TEMPLATE.md` kopieren und nach dem Seitentyp benennen, z. B.
+   `overview.md` oder `detail.md`. Nur Zweck, Route, Figma-Node-IDs und Aufbau ausfüllen.
+2. **Nach dem Bauen vollständig:** Komponenten mit Verweis auf ihre Contracts
+   (siehe [contracts/README.md](../../contracts/README.md)), Daten, Zustände, Interaktionen,
+   Responsive und offene Drift aus [DRIFT.md](../../contracts/DRIFT.md).
+3. Akzeptanzkriterien abhaken und den Status oben setzen. Die Tabelle unten ergänzen.
 
 ## Seiten
 

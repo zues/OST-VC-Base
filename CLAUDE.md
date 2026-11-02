@@ -50,15 +50,34 @@ Bitte ausfüllen. Claude liest diese Angaben bei jeder Session.
 
 ## Ablauf für eine neue Seite
 
-1. **Seiten-Doku:** [docs/pages/_TEMPLATE.md](docs/pages/_TEMPLATE.md) kopieren und ausfüllen
-   (Zweck, Aufbau, Daten, Zustände).
-2. **Figma:** Frames Desktop und Mobile bauen bzw. prüfen, Node-IDs in die Seiten-Doku eintragen.
-3. **Contracts:**
-   - Für jede verwendete Komponente einen Contract anlegen oder ergänzen.
-   - Die Vorlagen liegen in [contracts/templates/](contracts/templates/), die Anleitung in
-     [contracts/README.md](contracts/README.md).
-4. **Code:** shadcn-Komponenten installieren, Kompositionen bauen, Seite zusammensetzen.
-5. **Prüfen:** Befehle siehe unten. Abweichungen in DRIFT.md eintragen und in der Seiten-Doku verlinken.
+**Figma → Code** (die Seite gibt es in Figma):
+
+1. **Grob erfassen:** Seiten-Doku aus [docs/pages/_TEMPLATE.md](docs/pages/_TEMPLATE.md) anlegen,
+   nur Zweck, Route, Figma-Node-IDs und Aufbau. Der Rest kommt nach dem Bauen.
+2. **Bauen:**
+   - shadcn-Komponenten installieren, Kompositionen bauen, Seite zusammensetzen.
+   - Desktop und Mobile in derselben Seite über Tailwind-Breakpoints.
+   - Für jede eigene Komponente einen Contract aus [contracts/templates/](contracts/templates/)
+     anlegen (Anleitung: [contracts/README.md](contracts/README.md)).
+   - Am Schluss selbst Screenshots bei 390 und 1440 px mit Figma vergleichen.
+3. **Testen:** Die Studierenden klicken durch und notieren Abweichungen.
+4. **Nachjustieren:** höchstens drei Runden. Was nicht wie in Figma geht, kommt nach DRIFT.md.
+5. **Dokumentieren:** Seiten-Doku an den gebauten Stand anpassen (Komponenten mit Contracts, Daten,
+   Zustände, Interaktionen, Responsive, Drift), Akzeptanzkriterien abhaken, Status setzen.
+6. **Committen:** nach `npm run lint` und `npm run check:contracts`, nur auf Wunsch.
+
+**Code → Figma** (die Seite gibt es noch nicht in Figma): Seiten-Doku beschreiben, im Code bauen,
+testen, dann nach Figma übertragen, siehe
+[FIGMA-ARBEITSWEISE.md](contracts/FIGMA-ARBEITSWEISE.md#code--figma). Lücken kommen nach DRIFT.md.
+
+## Theme
+
+- Farben, Radius und Schrift ändern sich **nur über die Variablen** in `src/app/globals.css`
+  (`:root` und `.dark`). Keine Farben oder Rundungen als Klassen an Komponenten.
+- Eine andere Schrift wird zusätzlich in `src/app/layout.tsx` über `next/font` geladen und an
+  `--font-sans` gebunden.
+- Neue Werte auch in `contracts/tokens.json` eintragen und mit `npm run check:tokens` prüfen.
+- Übertragen nach Figma: siehe [FIGMA-ARBEITSWEISE.md](contracts/FIGMA-ARBEITSWEISE.md#theme-nach-figma).
 
 ## Prüfen
 

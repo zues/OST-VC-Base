@@ -12,7 +12,7 @@ Am einfachsten über die **Claude Code Desktop App**: Projekt klonen, dann im Ch
 /setup
 ```
 
-eingeben. Claude führt dich durch alles Weitere: Pakete, Dev-Server, figma-console MCP mit
+eingeben. Claude führt dich durch alles Weitere (Mac und Windows): Git und Node, Pakete, Dev-Server, figma-console MCP mit
 Desktop Bridge und Projekt-Steckbrief. Der [shadcn-Skill](.claude/skills/shadcn/) ist schon
 im Projekt enthalten. Die Schritte stehen in
 [.claude/skills/setup/SKILL.md](.claude/skills/setup/SKILL.md).
